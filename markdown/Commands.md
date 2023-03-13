@@ -25,6 +25,7 @@
 - 기본으로는 attasched 모드(연결된 모드) 로 실행
 - **-d** 옵션으로 detached 모드(분리된 모드) 로 실행 가능하다.
 - **--rm** 옵션으로 컨테이너가 종료시 자동 삭제되는 컨테이너를 실행한다.
+- **--name** 옵션으로 컨테이너의 ID를 대체할 수 있는 이름을 부여할 수 있다.
 
 ```powershell
 > docker ps
@@ -40,6 +41,9 @@
 ```
 
 - **[path]** 에 위치해 있는 Dockerfile 을 기반으로 이미지 생성
+- **-t** 옵션을 사용하여 [REPOSITORY]:[TAG] 형태로 이름 및 버전을 부여할 수 있다.
+- REPOSITORY 는 일반적인 이름을, TAG 에는 특정화된 버전을 부여한다.
+- 이미지의 ID 대신 [REPOSITORY]:[TAG] 형태로 사용 가능
 
 ```powershell
 > docker stop [컨테이너 명]
@@ -89,7 +93,7 @@
 - 생성된 이미지 목록 확인
 
 ```powershell
-> docker rmi [이미지 ID 또는 이름] [이미지 ID 또는 이름] ...
+> docker rmi [이미지 ID 또는 REPOSITORY] [이미지 ID 또는 REPOSITORY] ...
 ```
 
 - 입력된 이미지 삭제
@@ -103,3 +107,31 @@
 
 - 현재 사용되고 있지 않은 이미지들 자동 삭제
 - 이미지를 사용하는 컨테이너가 없는 이미지들만 삭제
+
+```powershell
+> docker image inspect [이미지 ID 또는 REPOSITORY]
+```
+
+- 이미지의 상세 정보 보기
+- **Container**: 사용중인 컨테이너
+- **Config.ExposedPorts**: 노출된 port 정보
+- **Config.Env**: 환경변수
+- **Config.Cmd**: EntryPoint 명령
+- **DockerVersion**: Docker 버전
+- **Os**: 운영체제
+- **RootFS.Layers**: 구성하고 있는 레이어 이미지들. 해당 이미지를 재 빌드시, 구성되어 있는 레이어 이미지의 변경 사항을 체크하여 변경될 레이어만 새로 빌드하는데 사용된다.
+
+```powershell
+> docker cp [source] [target]
+```
+
+- 컨테이너에서 호스트로 또는 호스트에서 컨테이너로 파일을 복사한다.
+- 컨테이너의 위치를 설정할 때에는 **_[컨네이너 이름 또는 ID]:[위치]_** 형태로 작성한다.
+- 주로 컨테이너에 저장되어 있는 로그파일을 추출하기 위해 사용하는 것을 권장.
+
+```powershell
+> docker tag [source] [target]
+```
+
+- docker 이미지의 이름[REPOSITORY](:태그[TAG]) 를 변경한다.
+- 기존 이미지를 삭제하지 않고 복사하여 이름[REPOSITORY](:태그[TAG]) 를 부여한다.
