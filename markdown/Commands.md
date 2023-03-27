@@ -162,3 +162,17 @@
 ```
 
 - docker network 를 생성한다.
+
+```docker
+> docker-compose
+```
+
+- **build**
+  - compose 내의 이미지를 생성한다.
+- **up**
+  - compose 내의 컨테이너를 실행한다.
+  - `--build` 옵션으로 생성된 이미지를 무시하고 새로 생성한다.
+  - `-d` detached mode 로 실행한다.
+- **down**
+  - 실행중인 compose 컨테이너를 종료한다.
+  - `-v` 옵션으로 compose 실행시 생성된 명명 볼륨을 제거한다.
