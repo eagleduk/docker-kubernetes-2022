@@ -60,6 +60,7 @@ volumes:
 
 - 제어할 컨테이너정의
 - 정의된 컨테이너명으로 같은 compose 내에서 네트워크 명명 규칙이 이루어 진다.
+- dockerfile 에 사용되는 명령을 오버라이드 할 수 있다.(working_dir, entrypoint)
 
 ### 1. image
 

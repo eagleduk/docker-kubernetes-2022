@@ -4,3 +4,4 @@
 node_modules
 package-lock.json
 08.laravel-setting/src
+*.pem
